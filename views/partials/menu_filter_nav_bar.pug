@@ -1,8 +1,9 @@
-
-extends ../layouts/layout
-
-block main
-  .container
-    .row
-      each k in category
-        li=k
+#bannerImageContainer.container-fluid
+  img#bannerImage(src='http://www.ilovehongkong.hk/sites/www.ilovehongkong.hk/files/styles/home_hero_bs/public/iw1_pic1_53.jpg?itok=J6NXoYHW')
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      ul.nav.navbar-nav
+       each k in category
+        li
+          a(href='#')= k

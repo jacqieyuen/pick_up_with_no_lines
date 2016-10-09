@@ -1,14 +1,10 @@
 extends ../layouts/layout
 
 block main
-  .container
-    .row
-      ul
-       each k in category
-        li= k
-  .container
+  include ../partials/menu_filter_nav_bar.pug
+  .container-fluid
     each i in inventory
-      .row
+      .row-fluid
         each item in i
           .col-xs-12.col-sm-4.col-md-4
             .thumbnail(class='item.category')

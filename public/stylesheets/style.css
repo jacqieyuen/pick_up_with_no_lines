@@ -1,5 +1,20 @@
+body {
+  padding-top: 70px;
+}
+#bannerImageContainer{
+  padding:  0;
+  height: 330px;
+  overflow: hidden;
+}
+#bannerImage{
+  background-position: bottom;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+}
+
 .thumbnail img {
-  height: 200px;
+  height: 250px;
   width: 100%;
 }
 
@@ -10,5 +25,4 @@
 .price {
   font-weight: bold;
   font-size: 16px;
-
 }
