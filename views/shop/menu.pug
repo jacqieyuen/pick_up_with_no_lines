@@ -1,7 +1,11 @@
 extends ../layouts/layout
 
 block main
-  //- include ../partials/menu_filter_nav_bar.pug
+  .container
+    .row
+      ul
+       each k in category
+        li= k
   .container
     each i in inventory
       .row
