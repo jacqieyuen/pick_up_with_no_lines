@@ -1,20 +1,32 @@
 body {
   padding-top: 70px;
 }
-#bannerImageContainer{
+
+/* BANNER IMAGE */
+#bannerImageContainer {
   padding:  0;
   height: 330px;
   overflow: hidden;
 }
-#bannerImage{
+#bannerImage {
   background-position: bottom;
   background-repeat: no-repeat;
   width: 100%;
   height: auto;
 }
 
+/* CATEGORY SEPERATOR */
+#categorySeperator {
+  text-align: center;
+}
+
+/* THUMBNAIL */
+.thumbnail {
+  padding: 0;
+}
+
 .thumbnail img {
-  height: 250px;
+  height: 30%;
   width: 100%;
 }
 

@@ -2,62 +2,20 @@ extends ../layouts/layout
 
 block main
   include ../partials/menu_filter_nav_bar.pug
-  .container-fluid
-    each i in inventory
-      .row-fluid
-        each item in i
-          .col-xs-12.col-sm-4.col-md-4
-            .thumbnail(class='item.category')
-              img.img-responsive(src=item.imagePath, alt='...')
-              .caption
-                h3= item.title
-                p.description= item.description
-                div.clearfix
-                  div.price.pull-left= "$ "+item.price
-                  a.btn.btn-default.pull-right(href='#', role='button') Button
-      //- .col-xs-12.col-sm-4.col-md-4
-      //-   .thumbnail
-      //-     img.img-responsive(src='http://www.simplylife.com.hk/img/kitchen/to_hypnotise/simplylife_open_kitchen_to_hypnotise_r7_c3.jpg', alt='...')
-      //-     .caption
-      //-       h3 Title
-      //-       p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      //-       div.clearfix
-      //-         div.price.pull-left $12
-      //-         a.btn.btn-default.pull-right(href='#', role='button') Button
-      //- .col-xs-12.col-sm-4.col-md-4
-      //-   .thumbnail
-      //-     img.img-responsive(src='http://www.simplylife.com.hk/img/kitchen/to_hypnotise/simplylife_open_kitchen_to_hypnotise_r19_c1.jpg', alt='...')
-      //-     .caption
-      //-       h3 Title
-      //-       p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      //-       div.clearfix
-      //-         div.price.pull-left $12
-      //-         a.btn.btn-default.pull-right(href='#', role='button') Button
-      //- .col-xs-12.col-sm-4.col-md-4
-      //-   .thumbnail
-      //-     img.img-responsive(src='http://www.simplylife.com.hk/img/kitchen/to_hypnotise/simplylife_open_kitchen_to_hypnotise_r23_c1.jpg', alt='...')
-      //-     .caption
-      //-       h3 Title
-      //-       p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      //-       div.clearfix
-      //-         div.price.pull-left $12
-      //-         a.btn.btn-default.pull-right(href='#', role='button') Button
-      //- .col-xs-12.col-sm-4.col-md-4
-      //-   .thumbnail
-      //-     img.img-responsive(src='http://www.simplylife.com.hk/img/kitchen/to_comfort/simplylife_open_kitchen_to_comfort_r15_c2.jpg', alt='...')
-      //-     .caption
-      //-       h3 Title
-      //-       p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      //-       div.clearfix
-      //-         div.price.pull-left $12
-      //-         a.btn.btn-default.pull-right(href='#', role='button') Button
-      //- .col-xs-12.col-sm-4.col-md-4
-      //-   .thumbnail
-      //-     img.img-responsive(src='http://www.simplylife.com.hk/img/kitchen/to_hypnotise/simplylife_open_kitchen_to_hypnotise_r9_c1.jpg', alt='...')
-      //-     .caption
-      //-       h3 Title
-      //-       p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      //-       div.clearfix
-      //-         div.price.pull-left $12
-      //-         a.btn.btn-default.pull-right(href='#', role='button') Button
-
+  #inventoryBox.container-fluid
+    each k in category
+      div#categorySeperator
+        h2= k
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      .row
+        each item in inventory
+          if item.category == k
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4.col-xl-4
+              .thumbnail(class= item.category)
+                img.img-responsive(src=item.imagePath, alt='...')
+                .caption
+                  h3= item.title
+                  p.description= item.description
+                  div.clearfix
+                    div.price.pull-left= "$ "+item.price
+                    a.btn.btn-default.pull-right(href='#', role='button') Button
