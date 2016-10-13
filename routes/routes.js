@@ -1,7 +1,6 @@
 const Inventory = require('../models/inventory');
-
 module.exports = function(app, passport){
-
+// menu data
   function findInventoryDatabase(req, res, next) {
       Inventory.find(function(err, items){
       if(err){
@@ -35,6 +34,14 @@ module.exports = function(app, passport){
   };
 
   app.get('/', findInventoryDatabase, distinctInventoryCategory, renderMenu);
+
+  app.get('/signup', function(req, res, next){
+    res.render('user/sign_up', { csrfToken: req.csrfToken()});
+  });
+
+  app.post('/signup', function(req, res, next){
+    res.redirect('/');
+  });
 
 
 // Do Not Delete This Curly Bracket.

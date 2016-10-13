@@ -9,11 +9,12 @@ var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var csrf = require('csurf');
 
 // Init App
 
 var app = express();
+var csrfProtection = csrf({ cookie: true });
 
 
 // Connect With Mongo DB
@@ -45,6 +46,7 @@ app.use(session({secret: 'Why do we need a secret?'})); // why do we need a secr
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // when do we use flash?
+app.use(csrfProtection);
 
 // Routes
 require('./routes/routes')(app, passport); //does this insert the routes.js file here?

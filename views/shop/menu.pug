@@ -1,12 +1,13 @@
 extends ../layouts/layout
 
 block main
+  include ../partials/main_nav_bar.pug
   include ../partials/menu_filter_nav_bar.pug
   #inventoryBox.container-fluid
     each k in category
       div#categorySeperator
-        h2= k
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        h2#categoryInMenu= k
+        p#categoryDescription Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       .row
         each item in inventory
           if item.category == k
@@ -18,4 +19,4 @@ block main
                   p.description= item.description
                   div.clearfix
                     div.price.pull-left= "$ "+item.price
-                    a.btn.btn-default.pull-right(href='#', role='button') Button
+                    a.btn.btn-default.pull-right(href='#', role='button') Add

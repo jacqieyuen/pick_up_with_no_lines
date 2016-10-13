@@ -1,8 +1,15 @@
+
+
+/* BODY */
+
 body {
   padding-top: 70px;
 }
 
+
+
 /* BANNER IMAGE */
+
 #bannerImageContainer {
   padding:  0;
   height: 330px;
@@ -15,12 +22,18 @@ body {
   height: auto;
 }
 
+
+
 /* CATEGORY SEPERATOR */
+
 #categorySeperator {
   text-align: center;
 }
 
+
+
 /* THUMBNAIL */
+
 .thumbnail {
   padding: 0;
 }
