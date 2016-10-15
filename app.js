@@ -10,6 +10,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var csrf = require('csurf');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 // Init App
 
@@ -43,10 +45,13 @@ app.set('view engine', 'pug');
 // Setup Sessions
 
 app.use(session({secret: 'Why do we need a secret?'})); // why do we need a secret?
+app.use(flash()); // when do we use flash?
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash()); // when do we use flash?
 app.use(csrfProtection);
+
+// Passport Strategy
+require('./config/passport')(passport);
 
 // Routes
 require('./routes/routes')(app, passport); //does this insert the routes.js file here?

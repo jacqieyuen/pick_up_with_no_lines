@@ -1,6 +1,17 @@
 const Inventory = require('../models/inventory');
+const User = require('../models/user');
+
 module.exports = function(app, passport){
-// menu data
+
+// Router Middle Ware
+  function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/')
+  };
+
+// Menu Data
   function findInventoryDatabase(req, res, next) {
       Inventory.find(function(err, items){
       if(err){
@@ -33,15 +44,56 @@ module.exports = function(app, passport){
     });
   };
 
-  app.get('/', findInventoryDatabase, distinctInventoryCategory, renderMenu);
+  app.get('/menu', findInventoryDatabase, distinctInventoryCategory, renderMenu);
 
+// Sign Up
   app.get('/signup', function(req, res, next){
-    res.render('user/sign_up', { csrfToken: req.csrfToken()});
+    res.render('user/sign_up', {message: req.flash('loginMessage'), csrfToken: req.csrfToken()});
   });
 
-  app.post('/signup', function(req, res, next){
-    res.redirect('/');
+// Sign up authentication using passport
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/menu',
+    failureRedirect : '/signup',
+    failureFlash: true
+  }));
+
+// Log In
+  app.get('/signin', function(req, res){
+    res.render('user/sign_in', {message: req.flash('loginMessage')});
   });
+
+
+//   app.get('/logout', function(req, res){
+//     req.logout();
+//     res.redirect('/');
+//   });
+
+//   //Facebook Login... creates the connection to facebook
+//   app.get('/auth/facebook', passport.authenticate('facebook'));
+
+//   app.get('/auth/facebook/callback', passport.authenticate('facebook',{
+//     successRedirect : '/menu',
+//     failureRedirect : '/',
+//     failureFlash: true
+//   }));
+
+//   //Twitter Login... creates the connection to twitter
+//   app.get('/auth/twitter', passport.authenticate('twitter'));
+//   app.get('/auth/twitter/callback', passport.authenticate('twitter',{
+//     successRedirect : '/menu',
+//     failureRedirect : '/',
+//     failureFlash: true
+//   }));
+
+// // POST FUNCTIONS. aka.-----------------------------
+
+// //login authentication using passport
+//   app.post('/signin', passport.authenticate('local-login', {
+//     successRedirect : '/menu',
+//     failureRedirect : '/signin',
+//     failureFlash: true
+//   }));
 
 
 // Do Not Delete This Curly Bracket.
