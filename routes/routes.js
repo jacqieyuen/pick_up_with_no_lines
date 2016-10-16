@@ -44,14 +44,14 @@ module.exports = function(app, passport){
     });
   };
 
-  app.get('/menu', findInventoryDatabase, distinctInventoryCategory, renderMenu);
+  app.get('/menu', findInventoryDatabase, distinctInventoryCategory, isLoggedIn, renderMenu);
 
 // Sign Up
   app.get('/signup', function(req, res, next){
     res.render('user/sign_up', {message: req.flash('loginMessage'), csrfToken: req.csrfToken()});
   });
 
-// Sign up authentication using passport
+// Sign Up Authentication Using Passport
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/menu',
     failureRedirect : '/signup',
@@ -59,9 +59,16 @@ module.exports = function(app, passport){
   }));
 
 // Log In
-  app.get('/signin', function(req, res){
-    res.render('user/sign_in', {message: req.flash('loginMessage')});
+  app.get('/login', function(req, res){
+    res.render('user/log_in', {message: req.flash('loginMessage'), csrfToken: req.csrfToken()});
   });
+
+// Login Authentication Using Passport
+  app.post('/login', passport.authenticate('local-login', {
+    successRedirect : '/menu',
+    failureRedirect : '/login',
+    failureFlash: true
+  }));
 
 
 //   app.get('/logout', function(req, res){
@@ -88,12 +95,6 @@ module.exports = function(app, passport){
 
 // // POST FUNCTIONS. aka.-----------------------------
 
-// //login authentication using passport
-//   app.post('/signin', passport.authenticate('local-login', {
-//     successRedirect : '/menu',
-//     failureRedirect : '/signin',
-//     failureFlash: true
-//   }));
 
 
 // Do Not Delete This Curly Bracket.

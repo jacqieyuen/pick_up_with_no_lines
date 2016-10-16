@@ -7,12 +7,12 @@ block main
         h1 Log In
         if (message.length > 0)
           p= message
-        form(action='/signin', method='post')
+        form(action='/login', method='post')
           .form-group
             label(for='email') Email address:
-            input#email.form-control(type='email')
+            input#email.form-control(type='email', name='email')
           .form-group
             label(for='password') Password:
-            input#password.form-control(type='password')
+            input#password.form-control(type='password', name='password')
           input(type='hidden', name='_csrf', value= csrfToken)
           button.btn.btn-default(type='submit') Submit
