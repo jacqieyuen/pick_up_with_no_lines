@@ -17,7 +17,13 @@ nav.navbar.navbar-default.navbar-fixed-top
             i.fa.fa-user(aria-hidden='true')
             span.caret
           ul.dropdown-menu
-            li
-              a(href='#') User Account
-            li
-              a(href='#') Log Out
+            if (login)
+              li
+                a(href='/profile') Profile
+              li
+                a(href='/logout') Log Out
+            else
+              li
+                a(href='/login') Log In
+              li
+                a(href='/signup') Sign Up

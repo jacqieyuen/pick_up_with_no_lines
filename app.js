@@ -23,7 +23,6 @@ var csrfProtection = csrf({ cookie: true });
 
 mongoose.connect('mongodb://localhost/P_U_w_N_L');
 
-
 // Init Middle-are
 
 app.use(cookieParser());
@@ -50,11 +49,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(csrfProtection);
 
+
+// Setting A Global Variable
+app.use(function(req, res, next){
+  res.locals.login = req.isAuthenticated();
+  next();
+})
+
 // Passport Strategy
 require('./config/passport')(passport);
 
 // Routes
 require('./routes/routes')(app, passport); //does this insert the routes.js file here?
+require('./routes/users')(app, passport); //does this insert the routes.js file here?
 
 app.listen(3000, function(){
   console.log("Listening On Port 3000!");
